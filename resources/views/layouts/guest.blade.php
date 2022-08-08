@@ -12,10 +12,19 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <livewire:styles/>
     </head>
     <body>
+        @if(session('status'))
+            <div>{{ session('status') }}</div>
+        @endif
+
+
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+        <livewire:scripts/>
     </body>
 </html>

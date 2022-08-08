@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Article\Form;
+use App\Http\Livewire\Article\Show;
+use App\Http\Livewire\Articles;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# From Articles
+Route::get('/', Articles::class)->name('articles.index');
+
+# From Article
+Route::get('/articulo/crear', Form::class)
+    ->name('article.create')
+    ->middleware('auth:sanctum');
+
+Route::get('/articulo/{article}', Show::class)
+    ->name('article.show');
+
+Route::get('/articulo/{article}/edit', Form::class)
+    ->name('article.edit')
+    ->middleware('auth:sanctum');
 
 Route::middleware([
     'auth:sanctum',
